@@ -8,10 +8,22 @@
         <title>Momentum</title>
     </head>
     <body>
-        <form id="login-form">
-            <input required maxlength="15" type="text" placeholder="What is your name?" />
+        <h2 id="clock"></h2>
+        <h1 id="greeting" class="hidden"></h1>
+        <h2 id="quotes">
+            <span></span>
+            <span></span>
+        </h2>
+        <form id="login-form" class="hidden">
+            <input
+            required
+            maxlength="15"
+            type="text"
+            placeholder="What is your name?"/>
             <input type="submit" value="Log In" />
         </form>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="greeting.js"></script>
+    <script type="text/javascript" src="clock.js"></script>
+    <script type="text/javascript" src="quotes.js"></script>
     </body>
 </html>
