@@ -24,22 +24,28 @@ function paintToDo(newToDo){
 
 function deleteToDo(event){
     //console.dir(event.target);
-    const value = event.composedPath()[1];
-    const text = value.querySelector("span").innerHTML;
-    localStorage.removeItem(text);
-    value.remove();
-    console.log(toDos.splice(toDos.indexOf(text), 1));
-    saveToDos();
+    const li = event.target.parentElement;
+    li.remove();
+    //const value = event.composedPath()[1];
+    //const text = value.querySelector("span").innerHTML;
+    //localStorage.removeItem(text);
+    //value.remove();
+    //console.log(toDos.splice(toDos.indexOf(text), 1));
+    //saveToDos();
 }
 
 function handleToDoSubmit(event){
     event.preventDefault();
-    const toDo = toDoInput.value;
-    toDos.push(toDo);
-    localStorage.setItem(toDo, toDo);
-    paintToDo(toDo);
+    const newToDo = toDoInput.value;
     toDoInput.value = "";
+    const toDoObj = {
+        text: newToDo,
+        id: Date.now(),
+    }
+    toDos.push(toDoObj);
+    paintToDo(toDoObj);
     saveToDos();
+    //localStorage.setItem(toDoObj, toDoObj);  
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
