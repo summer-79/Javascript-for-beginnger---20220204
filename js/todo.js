@@ -12,20 +12,24 @@ function saveToDos(){
 
 function paintToDo(newToDo){
     const li = document.createElement("li");
+    li.id = newToDo.id;
     const span = document.createElement("span");
+    span.innerHTML = newToDo.text;
     const button = document.createElement("button");
+    button.addEventListener("click", deleteToDo);
+    button.innerHTML = "X";
     li.appendChild(span);
     li.appendChild(button);
-    span.innerHTML = newToDo;
-    button.innerHTML = "X";
     toDoList.appendChild(li);
-    button.addEventListener("click", deleteToDo);
 }
+
+//function filterFunc(item){return item.id !== li.id;}
 
 function deleteToDo(event){
     //console.dir(event.target);
     const li = event.target.parentElement;
     li.remove();
+    //toDos.filter((item)=> item.id != li.id);
     //const value = event.composedPath()[1];
     //const text = value.querySelector("span").innerHTML;
     //localStorage.removeItem(text);
@@ -38,14 +42,13 @@ function handleToDoSubmit(event){
     event.preventDefault();
     const newToDo = toDoInput.value;
     toDoInput.value = "";
-    const toDoObj = {
+    const newToDoObj = {
         text: newToDo,
         id: Date.now(),
     }
-    toDos.push(toDoObj);
-    paintToDo(toDoObj);
-    saveToDos();
-    //localStorage.setItem(toDoObj, toDoObj);  
+    toDos.push(newToDoObj);
+    paintToDo(newToDoObj);
+    saveToDos(); 
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
@@ -57,7 +60,3 @@ if(saveToDos !== null){
     toDos = parseToDos;
     parseToDos.forEach((item)=>paintToDo(item));
 }
-
-
-
-
